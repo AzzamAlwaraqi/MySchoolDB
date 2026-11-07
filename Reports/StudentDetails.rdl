@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SchoolDBDataSource">
+      <DataSourceReference>/MYSchoolDS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="dsDetails">
+      <Query>
+        <DataSourceName>SchoolDBDataSource</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_StudentDetails</CommandText>
+        <QueryParameters><QueryParameter Name="@Student_Id"><Value>=Parameters!Student_Id.Value</Value></QueryParameter></QueryParameters>
+      </Query>
+      <Fields>
+        <Field Name="First_Name"><DataField>First_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Last_Name"><DataField>Last_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Age"><DataField>Age</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="Gender"><DataField>Gender</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Blood_Type"><DataField>Blood_Type</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Medical_Conditions"><DataField>Medical_Conditions</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Class_Name"><DataField>Class_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Parent_Name"><DataField>Parent_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="relationship"><DataField>relationship</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Parent_Phone"><DataField>Parent_Phone</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Parent_Email"><DataField>Parent_Email</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Occupation"><DataField>Occupation</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="GPA"><DataField>GPA</DataField><rd:TypeName>System.Decimal</rd:TypeName></Field>
+        <Field Name="Class_Rank"><DataField>Class_Rank</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="Student_Id"><DataField>Student_Id</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="dsStudents">
+      <Query>
+        <DataSourceName>SchoolDBDataSource</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_StudentList</CommandText>
+
+      </Query>
+      <Fields>
+        <Field Name="Student_Id"><DataField>Student_Id</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="Display_Name"><DataField>Display_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="Title">
+            <CanGrow>true</CanGrow>
+            <Paragraphs>
+              <Paragraph><TextRuns><TextRun><Value>Student Details</Value><Style><FontFamily>Segoe UI Light</FontFamily><FontSize>22pt</FontSize><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!First_Name.Value,"dsDetails") &amp; " " &amp; First(Fields!Last_Name.Value,"dsDetails")</Value><Style><FontSize>10pt</FontSize><Color>#777777</Color></Style></TextRun></TextRuns></Paragraph>
+            </Paragraphs>
+            <Top>0in</Top><Left>0in</Left><Height>0.7in</Height><Width>6.5in</Width>
+            <Style><Border><Style>None</Style></Border></Style>
+          </Textbox>          <Textbox Name="lbl0f7914">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Student ID</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>0.8in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val3662a3">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Student_Id.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>0.8in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lble16d04">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Class</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.05in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="valb2c5e7">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Class_Name.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.05in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lblc3fa27">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Age / Gender</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.30in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val0efd52">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Age.Value,"dsDetails") &amp; "  /  " &amp; First(Fields!Gender.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.30in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lblb17f9c">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Blood Type</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.55in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="valca0fae">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Blood_Type.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.55in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lbl563646">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Medical</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.80in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="valf56a44">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIF(IsNothing(First(Fields!Medical_Conditions.Value,"dsDetails")),"-",First(Fields!Medical_Conditions.Value,"dsDetails"))</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>1.80in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lblbb837e">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Parent</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.05in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val91bbac">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Parent_Name.Value,"dsDetails") &amp; " (" &amp; First(Fields!relationship.Value,"dsDetails") &amp; ")"</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.05in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lbl6b3007">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Parent Phone</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.30in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val13dcff">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Parent_Phone.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.30in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lbl5dbf2b">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Parent Email</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.55in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val86bb40">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Parent_Email.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.55in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lbl1c1915">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Occupation</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.80in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="valb64d54">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Occupation.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>2.80in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lblf0f9ab">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>GPA</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>3.05in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="val50968e">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!GPA.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>3.05in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="lbl6a6e80">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Class Rank</Value>
+              <Style><FontSize>9pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>3.30in</Top><Left>0in</Left><Height>0.22in</Height><Width>1.6in</Width><Style /></Textbox>
+          <Textbox Name="valba16d3">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!Class_Rank.Value,"dsDetails")</Value>
+              <Style><FontSize>9pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>3.30in</Top><Left>1.7in</Left><Height>0.22in</Height><Width>4.6in</Width><Style /></Textbox>          <Textbox Name="DrillAddress">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>View address report &#187;</Value>
+              <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>#1a73e8</Color><TextDecoration>Underline</TextDecoration></Style>
+              <ActionInfo><Actions><Action><Drillthrough><ReportName>StudentAddress</ReportName>
+                <Parameters><Parameter Name="Student_Id"><Value>=Parameters!Student_Id.Value</Value></Parameter></Parameters>
+              </Drillthrough></Action></Actions></ActionInfo></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>3.7in</Top><Left>0in</Left><Height>0.25in</Height><Width>3in</Width><Style /></Textbox>          <Textbox Name="MarksLabel">
+            <CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>Marks (all subjects)</Value>
+              <Style><FontSize>12pt</FontSize><FontWeight>Bold</FontWeight><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+            <Top>4.15in</Top><Left>0in</Left><Height>0.3in</Height><Width>4in</Width><Style /></Textbox>          <Subreport Name="MarksSub">
+            <ReportName>StudentMarks</ReportName>
+            <Parameters><Parameter Name="Student_Id"><Value>=Parameters!Student_Id.Value</Value></Parameter></Parameters>
+            <Top>4.5in</Top><Left>0in</Left><Height>1.6in</Height><Width>6.5in</Width>
+            <Style><Border><Style>None</Style></Border></Style>
+          </Subreport>
+        </ReportItems>
+        <Height>6.2in</Height>
+        <Style><Border><Style>None</Style></Border></Style>
+      </Body>
+      <Width>7in</Width>
+      <Page>
+        <PageFooter><Height>0.35in</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ft"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun>
+              <Value>=Globals!ExecutionTime</Value><Style><FontSize>8pt</FontSize><Color>#999999</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+              <Top>0.08in</Top><Left>0in</Left><Height>0.2in</Height><Width>3in</Width><Style /></Textbox>
+            <Textbox Name="pg"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun>
+              <Value>=&quot;Page &quot; &amp; Globals!PageNumber &amp; &quot; / &quot; &amp; Globals!TotalPages</Value><Style><FontSize>8pt</FontSize><Color>#999999</Color></Style></TextRun></TextRuns>
+              <Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs>
+              <Top>0.08in</Top><Left>4in</Left><Height>0.2in</Height><Width>2.5in</Width><Style /></Textbox>
+          </ReportItems>
+          <Style><Border><Style>None</Style></Border></Style>
+        </PageFooter>
+        <LeftMargin>0.6in</LeftMargin><RightMargin>0.6in</RightMargin><TopMargin>0.5in</TopMargin><BottomMargin>0.5in</BottomMargin><Style /></Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Student_Id">
+      <DataType>Integer</DataType>
+      <Prompt>Student</Prompt>
+      <ValidValues><DataSetReference><DataSetName>dsStudents</DataSetName><ValueField>Student_Id</ValueField><LabelField>Display_Name</LabelField></DataSetReference></ValidValues>
+      <DefaultValue><Values><Value>2026501</Value></Values></DefaultValue>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout><GridLayoutDefinition><NumberOfColumns>2</NumberOfColumns><NumberOfRows>1</NumberOfRows><CellDefinitions><CellDefinition><ColumnIndex>0</ColumnIndex><RowIndex>0</RowIndex><ParameterName>Student_Id</ParameterName></CellDefinition></CellDefinitions></GridLayoutDefinition></ReportParametersLayout>
+</Report>

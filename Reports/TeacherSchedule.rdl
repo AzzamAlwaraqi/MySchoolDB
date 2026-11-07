@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SchoolDBDataSource">
+      <DataSourceReference>/MYSchoolDS</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="dsTSched">
+      <Query>
+        <DataSourceName>SchoolDBDataSource</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_TeacherSchedule</CommandText>
+        <QueryParameters><QueryParameter Name="@Teacher_Id"><Value>=Parameters!Teacher_Id.Value</Value></QueryParameter></QueryParameters>
+      </Query>
+      <Fields>
+        <Field Name="Academic_Year"><DataField>Academic_Year</DataField><rd:TypeName>System.Int16</rd:TypeName></Field>
+        <Field Name="Semester"><DataField>Semester</DataField><rd:TypeName>System.Byte</rd:TypeName></Field>
+        <Field Name="Subject_Name_En"><DataField>Subject_Name_En</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Class_Level"><DataField>Class_Level</DataField><rd:TypeName>System.Byte</rd:TypeName></Field>
+        <Field Name="class_Letter"><DataField>class_Letter</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Course_Level"><DataField>Course_Level</DataField><rd:TypeName>System.Byte</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="dsTeachers">
+      <Query>
+        <DataSourceName>SchoolDBDataSource</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>rpt_TeacherList</CommandText>
+
+      </Query>
+      <Fields>
+        <Field Name="Teacher_Id"><DataField>Teacher_Id</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="Display_Name"><DataField>Display_Name</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="Title">
+            <CanGrow>true</CanGrow>
+            <Paragraphs>
+              <Paragraph><TextRuns><TextRun><Value>Teacher Schedule</Value><Style><FontFamily>Segoe UI Light</FontFamily><FontSize>22pt</FontSize><Color>#2e5b8a</Color></Style></TextRun></TextRuns></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>="Classes taught by teacher #" &amp; Parameters!Teacher_Id.Value</Value><Style><FontSize>10pt</FontSize><Color>#777777</Color></Style></TextRun></TextRuns></Paragraph>
+            </Paragraphs>
+            <Top>0in</Top><Left>0in</Left><Height>0.7in</Height><Width>6.5in</Width>
+            <Style><Border><Style>None</Style></Border></Style>
+          </Textbox>          <Tablix Name="tTSched">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn><Width>0.9in</Width></TablixColumn>
+                <TablixColumn><Width>0.7in</Width></TablixColumn>
+                <TablixColumn><Width>2.2in</Width></TablixColumn>
+                <TablixColumn><Width>1.1in</Width></TablixColumn>
+                <TablixColumn><Width>0.9in</Width></TablixColumn>
+                <TablixColumn><Width>1.1in</Width></TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow><Height>0.28in</Height><TablixCells>
+                    <TablixCell><CellContents>
+                      <Textbox Name="h45865dd8">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Year</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="h9146cc12">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Sem</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="h17a105bb">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Subject</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="hbd817768">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Class Level</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="hb6bda4e4">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Section</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="h6dfdec9d">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>Course Level</Value>
+                          <Style><FontSize>10pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+                        <Style><BackgroundColor>#2e5b8a</BackgroundColor><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>White</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                </TablixCells></TablixRow>
+                <TablixRow><Height>0.25in</Height><TablixCells>
+                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_1">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Academic_Year.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_2">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Semester.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_3">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Subject_Name_En.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Left</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_4">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Class_Level.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_5">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!class_Letter.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                    <TablixCell><CellContents>
+                      <Textbox Name="d_tTSched_6">
+                        <CanGrow>true</CanGrow>
+                        <Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Course_Level.Value</Value>
+                          <Style><FontSize>10pt</FontSize><Color>#222222</Color></Style></TextRun></TextRuns>
+                          <Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs>
+                        <Style><PaddingLeft>3pt</PaddingLeft><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
+                          <Border><Color>#cccccc</Color><Style>Solid</Style><Width>0.5pt</Width></Border></Style>
+                      </Textbox>
+                    </CellContents></TablixCell>                </TablixCells></TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy><TablixMembers>
+                  <TablixMember />
+                  <TablixMember />
+                  <TablixMember />
+                  <TablixMember />
+                  <TablixMember />
+                  <TablixMember />
+              </TablixMembers></TablixColumnHierarchy>
+            <TablixRowHierarchy><TablixMembers>
+                <TablixMember><KeepWithGroup>After</KeepWithGroup></TablixMember>
+                <TablixMember><Group Name="g_tTSched" /><TablixMembers><TablixMember /></TablixMembers></TablixMember>
+            </TablixMembers></TablixRowHierarchy>
+            <DataSetName>dsTSched</DataSetName>
+            <Top>0.9in</Top><Left>0in</Left><Height>0.53in</Height><Width>6.9in</Width>
+          </Tablix>
+        </ReportItems>
+        <Height>2.2in</Height>
+        <Style><Border><Style>None</Style></Border></Style>
+      </Body>
+      <Width>7in</Width>
+      <Page>
+        <PageFooter><Height>0.35in</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ft"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun>
+              <Value>=Globals!ExecutionTime</Value><Style><FontSize>8pt</FontSize><Color>#999999</Color></Style></TextRun></TextRuns></Paragraph></Paragraphs>
+              <Top>0.08in</Top><Left>0in</Left><Height>0.2in</Height><Width>3in</Width><Style /></Textbox>
+            <Textbox Name="pg"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun>
+              <Value>=&quot;Page &quot; &amp; Globals!PageNumber &amp; &quot; / &quot; &amp; Globals!TotalPages</Value><Style><FontSize>8pt</FontSize><Color>#999999</Color></Style></TextRun></TextRuns>
+              <Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs>
+              <Top>0.08in</Top><Left>4in</Left><Height>0.2in</Height><Width>2.5in</Width><Style /></Textbox>
+          </ReportItems>
+          <Style><Border><Style>None</Style></Border></Style>
+        </PageFooter>
+        <LeftMargin>0.6in</LeftMargin><RightMargin>0.6in</RightMargin><TopMargin>0.5in</TopMargin><BottomMargin>0.5in</BottomMargin><Style /></Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Teacher_Id">
+      <DataType>Integer</DataType>
+      <Prompt>Teacher</Prompt>
+      <ValidValues><DataSetReference><DataSetName>dsTeachers</DataSetName><ValueField>Teacher_Id</ValueField><LabelField>Display_Name</LabelField></DataSetReference></ValidValues>
+      <DefaultValue><Values><Value>3007</Value></Values></DefaultValue>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout><GridLayoutDefinition><NumberOfColumns>2</NumberOfColumns><NumberOfRows>1</NumberOfRows><CellDefinitions><CellDefinition><ColumnIndex>0</ColumnIndex><RowIndex>0</RowIndex><ParameterName>Teacher_Id</ParameterName></CellDefinition></CellDefinitions></GridLayoutDefinition></ReportParametersLayout>
+</Report>
